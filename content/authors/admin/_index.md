@@ -1,13 +1,13 @@
 ---
 # Display name
-title: 吳健雄
+title: Le Anh Tuan
 
 # Name pronunciation (optional)
-name_pronunciation: Chien Shiung Wu
+# name_pronunciation: Le Anh Tuan
 
 # Full name (for SEO)
-first_name: Shiung Wu
-last_name: Chien
+first_name: Anh Tuan
+last_name: Le
 
 # Status emoji
 status:
