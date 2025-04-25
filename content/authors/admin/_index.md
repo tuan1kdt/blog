@@ -3,7 +3,7 @@
 title: Le Anh Tuan
 
 # Name pronunciation (optional)
-name_pronunciation: ''
+# name_pronunciation: Le Anh Tuan
 
 # Full name (for SEO)
 first_name: Anh Tuan
@@ -49,6 +49,7 @@ profiles:
 
 interests:
   - Artificial Intelligence
+  - Computer Science
   - System design
 
 education:
@@ -132,6 +133,7 @@ languages:
     percent: 60
   - name: Vietnamese
     percent: 100
+
 # Awards.
 #   Add/remove as many awards below as you like.
 #   Only `title`, `awarder`, and `date` are required.
