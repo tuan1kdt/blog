@@ -77,13 +77,59 @@ Understanding n8n's architecture helps in leveraging its full potential, especia
 *   **Database Choice:** For production environments, using PostgreSQL or MySQL/MariaDB instead of SQLite is recommended for better performance and reliability under load.
 *   **Resource Allocation:** Sufficient CPU, memory, and network bandwidth are crucial, especially for worker instances handling complex or high-volume workflows.
 
-## Creating a Custom Node (Brief Overview)
+## Planning Your Custom Node
 
-While n8n offers a vast library of nodes, you might encounter scenarios where you need a specific integration or functionality not yet available. n8n's architecture allows developers to create custom nodes using Node.js (TypeScript). This involves:
+Before writing any code, it’s important to plan your custom n8n node carefully. This ensures your node is maintainable, user-friendly, and fits well within your workflow automation goals.
 
-1.  Setting up a development environment.
-2.  Defining the node's properties (inputs, outputs, UI elements).
-3.  Writing the execution logic for the node.
-4.  Packaging and (optionally) sharing your custom node with the community.
+### 1. Choosing the Node Type
 
-This extensibility is a key strength of n8n, allowing it to adapt to virtually any automation need.
+n8n nodes generally fall into two categories:
+- **Trigger Nodes:** Start workflows when an event occurs (e.g., webhook received, new email).
+- **Regular (Action) Nodes:** Perform actions or process data within a workflow (e.g., HTTP request, data transformation).
+
+**Questions to consider:**
+- Should your node initiate workflows (Trigger) or process data mid-flow (Action)?
+- Does your node need to poll an external service, or will it wait for incoming events?
+
+### 2. Selecting a Node Building Style
+
+n8n supports two main approaches for building nodes:
+- **Core/Monorepo Node:** Node is added directly to the n8n core repository (recommended for contributions to the main project).
+- **Community/External Node:** Node is developed as a standalone npm package (ideal for sharing independently or keeping private).
+
+**Repo Layout Example:**
+```
+n8n/
+  packages/
+    nodes-base/
+      nodes/
+        MyCustomNode/
+          MyCustomNode.node.ts
+          MyCustomNode.description.json
+          MyCustomNode.credentials.json
+```
+For external/community nodes, the structure might look like:
+```
+n8n-nodes-my-custom/
+  package.json
+  src/
+    MyCustomNode.node.ts
+    MyCustomNode.description.json
+    MyCustomNode.credentials.json
+  README.md
+```
+
+### 3. Designing the Node UI
+
+The user interface for your node in the n8n Editor is defined by its `description` object:
+- **Display Name & Description:** Choose clear, concise names and helpful descriptions.
+- **Inputs & Outputs:** Decide how data will flow into and out of your node.
+- **Parameters:** Plan which fields, dropdowns, credentials, and options users will interact with.
+- **Defaults & Appearance:** Set default values and color for easy identification.
+
+**Tips for UI Design:**
+- Group related parameters for clarity.
+- Use descriptive labels and tooltips.
+- Minimize required fields to streamline the user experience.
+- Consider advanced options for power users, but keep the main UI simple.
+
