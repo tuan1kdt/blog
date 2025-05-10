@@ -29,6 +29,8 @@ n8n is a powerful, free, and open-source workflow automation tool. It enables yo
 
 Understanding n8n's architecture helps in leveraging its full potential, especially when it comes to scaling, customizing, or embedding n8n. While deep technical details can be extensive, here's a high-level overview of its key components:
 
+{{< figure src="images/architecture.png" alt="Core n8n Architecture" >}}
+
 ### Key Components
 
 1.  **The n8n Editor (Frontend/UI):**
@@ -58,6 +60,7 @@ Understanding n8n's architecture helps in leveraging its full potential, especia
     *   n8n exposes a REST API that allows for programmatic interaction. You can use this API to manage workflows, trigger executions, retrieve execution data, and more, enabling integration with other systems.
 
 ### How It Works Together (Simplified Flow)
+{{< figure src="images/flow.png" alt="Core n8n flow" >}}
 
 1.  **Design:** You design a workflow in the n8n Editor. Your workflow is saved as a JSON object in the database.
 2.  **Trigger:** A trigger node initiates the workflow (e.g., an incoming webhook request, a scheduled time).
