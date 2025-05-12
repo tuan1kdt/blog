@@ -94,29 +94,108 @@ n8n nodes generally fall into two categories:
 ### 2. Selecting a Node Building Style
 
 n8n supports two main approaches for building nodes:
-- **Core/Monorepo Node:** Node is added directly to the n8n core repository (recommended for contributions to the main project).
-- **Community/External Node:** Node is developed as a standalone npm package (ideal for sharing independently or keeping private).
+- **Declarative Style:** Uses JSON to define node properties, inputs, outputs, and operations. This approach is simpler, more maintainable, and recommended for straightforward integrations.
+  - **Routing-Based Development:** Declarative style excels at creating HTTP-based nodes through a routing system.
+  - **Simplified API Integration:** Easily map API endpoints to operations without complex code.
+  - **Operation-Centric:** Define multiple operations (GET, POST, PUT, etc.) in a structured way.
+- **Programmatic Style:** Uses TypeScript code to define node behavior, offering more flexibility and control for complex logic or custom functionality.
 
-**Repo Layout Example:**
+**Declarative Style Example with HTTP Routing:**
+```json
+{
+  "name": "MyApiNode",
+  "httpRequestDefaults": {
+    "baseURL": "https://api.example.com/v1",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "properties": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "options": [
+        {
+          "name": "User",
+          "value": "user"
+        },
+        {
+          "name": "Product",
+          "value": "product"
+        }
+      ]
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "=/{{$parameter.resource}}/{{$parameter.id}}"
+            }
+          }
+        },
+        {
+          "name": "Create",
+          "value": "create",
+          "routing": {
+            "request": {
+              "method": "POST",
+              "url": "=/{{$parameter.resource}}",
+              "body": "={{$parameter.data}}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
 ```
-n8n/
-  packages/
-    nodes-base/
-      nodes/
-        MyCustomNode/
-          MyCustomNode.node.ts
-          MyCustomNode.description.json
-          MyCustomNode.credentials.json
+
+**Programmatic Style Example:**
+```typescript
+export class MyCustomNode implements INodeType {
+  description = {
+    displayName: 'My Custom Node',
+    // Other properties
+  };
+
+  async execute() {
+    // Custom logic implementation
+    // More flexibility and control
+  }
+}
 ```
-For external/community nodes, the structure might look like:
+
+You can also use a hybrid approach, combining declarative definitions with programmatic execution when needed.
+
+**Repository Layout for n8n-node-starter:**
+
+When developing custom nodes using the n8n-node-starter template, your project structure will typically look like this:
+
 ```
 n8n-nodes-my-custom/
-  package.json
-  src/
-    MyCustomNode.node.ts
-    MyCustomNode.description.json
-    MyCustomNode.credentials.json
-  README.md
+├── credentials/          # Credential definitions for your nodes
+│   └── MyServiceApi.credentials.ts
+├── nodes/                # Your custom node implementations
+│   ├── MyService/
+│   │   ├── MyService.node.ts           # Main node implementation
+│   │   ├── MyService.node.json         # Declarative definition (if used)
+│   │   └── descriptions/               # Localized descriptions
+│   │       └── MyServiceDescription.ts
+│   └── actions/                        # Reusable actions
+│       └── common.ts
+├── package.json          # Project configuration and dependencies
+├── tsconfig.json         # TypeScript configuration
+├── .eslintrc.js          # Linting rules
+├── README.md             # Documentation
+└── LICENSE.md            # License information
 ```
 
 ### 3. Designing the Node UI
