@@ -41,7 +41,7 @@ profiles:
   - icon: brands/github
     url: https://github.com/tuan1kdt
   - icon: brands/linkedin
-    url: www.linkedin.com/in/tuanla1001
+    url: https://www.linkedin.com/in/tuanla1001
   - icon: academicons/google-scholar
     url: https://scholar.google.com/citations?user=alexjohnson
   - icon: academicons/orcid
