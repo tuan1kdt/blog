@@ -1,7 +1,9 @@
 ---
 title: Love Story
 date: 2025-02-14
-external_link: https://lovestory.tuanla.vn/
+links:
+  - type: site
+    url: https://github.com/pandas-dev/pandas
 tags:
   - Hugo
   - html
