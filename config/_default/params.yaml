@@ -17,7 +17,7 @@ marketing:
     description: 'The highly-customizable Hugo Academic theme powered by Hugo Blox Builder. Easily create your personal academic website.'
     twitter: 'GetResearchDev'
   analytics:
-    google_analytics: ''
+    google_analytics: 'G-54YVDJE9DR'
     baidu_tongji: ''
     plausible: ''
     fathom: ''
@@ -58,3 +58,14 @@ features:
     enable: false
   privacy_pack:
     enable: false
+  comment:
+    # Choose a provider: giscus, disqus, commento, or '' to disable commenting
+    provider: 'giscus'
+    giscus:
+      repo: 'tuan1kdt/blog'
+      repo_id: '972150825'
+      category: 'Announcements'
+      category_id: 'DIC_kwDOKiEByc4CcLcK'
+      theme: preferred_color_scheme
+      language_code: en
+      mapping: pathname

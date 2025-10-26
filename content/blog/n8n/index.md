@@ -15,6 +15,8 @@ tags:
   - Workflow Automation
   - Architecture
   - Node.js
+
+commentable: true
 ---
 
 Welcome to this guide on n8n! 👋
