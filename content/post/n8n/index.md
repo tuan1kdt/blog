@@ -17,7 +17,7 @@ tags:
   - Node.js
 
 content_meta:
-  trending: false
+  trending: true
 
 commentable: true
 
