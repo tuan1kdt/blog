@@ -62,7 +62,7 @@ features:
     # Choose a provider: giscus, disqus, commento, or '' to disable commenting
     provider: 'giscus'
     giscus:
-      repo: 'tuan1kdt/blog'
+      repo: 'https://github.com/tuan1kdt/blog'
       repo_id: '972150825'
       category: 'Announcements'
       category_id: 'DIC_kwDOKiEByc4CcLcK'
