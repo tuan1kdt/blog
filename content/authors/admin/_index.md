@@ -143,7 +143,7 @@ awards:
     url: https://www.udemy.com/course/google-cloud-certification-associate-cloud-engineer
     date: '2021-11-25'
     awarder: Udemy
-    icon: udemy
+#    icon: udemy
     summary: |
       I studied the foundational concept of Google Cloud Platform. By the end, I was familiar with the significant technological trends driving the rise of cloud computing.
 
