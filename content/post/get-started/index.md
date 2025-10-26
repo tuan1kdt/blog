@@ -18,7 +18,7 @@ tags:
   - Markdown
 
 content_meta:
-  trending: true
+  trending: false
 ---
 
 Welcome 👋

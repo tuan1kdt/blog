@@ -16,7 +16,11 @@ tags:
   - Architecture
   - Node.js
 
+content_meta:
+  trending: false
+
 commentable: true
+
 ---
 
 Welcome to this guide on n8n! 👋
