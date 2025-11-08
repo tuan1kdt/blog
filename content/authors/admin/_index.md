@@ -149,4 +149,4 @@ awards:
 
 ---
 
-Highly motivated software engineering professional with experience in developing, deploying, and maintaining web, mobile, and desktop applications. Skilled in the utilization of various technologies such as Golang, Java, and SQL. Experienced in working in team-oriented software development projects and agile development methodologies. Passionate about developing innovative and efficient software solutions that meet customer needs.
+Platform Engineer with experience in building secure, scalable, and resilient backend systems in Golang and Java. Strong background in distributed computing, cloud orchestration (Kubernetes, Nomad), and DevOps automation. Passionate about developing cybersecurity and data protection platforms that empower enterprises to operate securely and efficiently.
