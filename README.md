@@ -46,7 +46,7 @@ To deploy manually from your machine:
 hugo --gc --minify && pnpm dlx pagefind --site public && npx wrangler deploy
 ```
 
-A `netlify.toml` is also kept for deploying to Netlify, and the static files in `public/` can be served by any static host.
+Security headers are defined in `static/_headers`, which Cloudflare serves alongside the site. The static files in `public/` can also be served by any other static host.
 
 ## Contributing
 This is a personal project, but suggestions are welcome. Feel free to open an issue if you spot a bug or want to propose an enhancement.
