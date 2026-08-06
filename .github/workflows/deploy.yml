@@ -2,7 +2,8 @@ name: Deploy website to Cloudflare Workers
 
 env:
   WC_HUGO_VERSION: '0.152.1'
-  NODE_VERSION: '20'
+  # Wrangler 4 requires Node.js >= 22
+  NODE_VERSION: '22'
 
 on:
   # Trigger the workflow every time you push to the `main` branch
