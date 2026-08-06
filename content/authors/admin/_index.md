@@ -82,10 +82,6 @@ work:
     date_end: ''
     summary: |2-
       My OPSWAT Central Management — Ho Chi Minh City
-      - Developed an AI agent workflow that encompassed the complete Software Development Life Cycle (SDLC), enhancing team members' performance.
-      - Designed and created a PoC for a new architecture utilizing Change Data Capture (CDC) techniques, which substantially decreased the product release cycle time.
-      - Created a robust internal library in Go to standardize processes and maintain consistency across teams.
-      - Optimized the API, resulting in a significant increase in throughput from 800 RPS to approximately 1500 RPS.
 
   - position: Platform Engineer
     company_name: GHTK
