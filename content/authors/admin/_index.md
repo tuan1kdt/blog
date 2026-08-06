@@ -186,6 +186,24 @@ languages:
 #   Only `title`, `awarder`, and `date` are required.
 #   Begin multi-line `summary` with YAML's `|` or `|2-` multi-line prefix and indent 2 spaces below.
 awards:
+  - title: File Security Associate
+    url: https://learn.opswatacademy.com/certificate/V-E4InrpmA
+    date: '2026-07-01'
+    awarder: OPSWAT Academy
+    summary: |
+      Credential ID V-E4InrpmA · Expires June 2027.
+  - title: Cybersecurity Fundamentals Associate
+    url: https://learn.opswatacademy.com/certificate/7IVNPuKGzw
+    date: '2026-07-01'
+    awarder: OPSWAT Academy
+    summary: |
+      Credential ID 7IVNPuKGzw · Expires June 2027.
+  - title: Introduction to CIP
+    url: https://learn.opswatacademy.com/certificate/yyNx-j5BNA
+    date: '2026-07-01'
+    awarder: OPSWAT Academy
+    summary: |
+      Credential ID yyNx-j5BNA · Expires June 2027.
   - title: Google Cloud Associate Cloud Engineer
     url: https://www.udemy.com/course/google-cloud-certification-associate-cloud-engineer
     date: '2021-11-25'
