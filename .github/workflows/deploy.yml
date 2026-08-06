@@ -23,9 +23,6 @@ jobs:
   deploy:
     if: github.repository_owner != 'HugoBlox'
     runs-on: ubuntu-latest
-    environment:
-      name: cloudflare
-      url: ${{ steps.deploy.outputs.deployment-url }}
     steps:
     - name: Checkout
       uses: actions/checkout@v4
