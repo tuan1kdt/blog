@@ -1,4 +1,4 @@
-name: Deploy website to GitHub Pages
+name: Deploy website to Cloudflare Workers
 
 env:
   WC_HUGO_VERSION: '0.152.1'
@@ -11,21 +11,20 @@ on:
   # Allows you to run this workflow manually from the Actions tab on GitHub
   workflow_dispatch:
 
-# Provide permission to clone the repo and deploy it to GitHub Pages
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: 'pages'
+  group: 'deploy'
   cancel-in-progress: false
 
 jobs:
-  # Build website
-  build:
+  deploy:
     if: github.repository_owner != 'HugoBlox'
     runs-on: ubuntu-latest
+    environment:
+      name: cloudflare
+      url: ${{ steps.deploy.outputs.deployment-url }}
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -77,43 +76,23 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-hugo-resources-
 
-    - name: Setup Pages
-      id: pages
-      uses: actions/configure-pages@v5
-
+      # baseURL comes from config/_default/hugo.yaml (https://tuanla.vn/)
     - name: Build with Hugo
       env:
         HUGO_ENVIRONMENT: production
+        HUGO_ENV: production
+        HUGO_ENABLEGITINFO: 'true'
       run: |
         echo "Hugo Cache Dir: $(hugo config | grep cachedir)"
-        hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+        hugo --gc --minify
 
-    - name: Generate Pagefind search index (if applicable)
-      run: |
-        # Check if site uses Pagefind search
-        if [ -f "package.json" ] && grep -q "pagefind" package.json; then
-          pnpm dlx pagefind --source "public" || npx pagefind --source "public"
-        fi
+    - name: Generate Pagefind search index
+      run: pnpm dlx pagefind --site public
 
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v4
+      # Uploads ./public as static assets, per wrangler.jsonc
+    - name: Deploy to Cloudflare Workers
+      id: deploy
+      uses: cloudflare/wrangler-action@v4
       with:
-        path: ./public
-
-  # Deploy website to GitHub Pages hosting
-  deploy:
-    if: github.repository_owner != 'HugoBlox'
-    needs: build
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-    permissions:
-      pages: write # to deploy to Pages
-      id-token: write # to verify the deployment originates from an appropriate source
-    # Deploy to the github-pages environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+        apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

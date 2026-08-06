@@ -1,0 +1,15 @@
+{
+  "name": "blog",
+  "compatibility_date": "2026-08-06",
+  // Keeps blog.<subdomain>.workers.dev live alongside the custom domains.
+  "workers_dev": true,
+  "routes": [
+    { "pattern": "tuanla.vn", "custom_domain": true },
+    { "pattern": "www.tuanla.vn", "custom_domain": true }
+  ],
+  "assets": {
+    "directory": "./public",
+    // Hugo emits public/404.html; serve it for unmatched paths.
+    "not_found_handling": "404-page"
+  }
+}

@@ -35,7 +35,18 @@ hugo
 The generated static files will be placed in the `public/` directory, ready for deployment.
 
 ## Deployment
-The site is configured for deployment to Netlify via the provided `netlify.toml`. You can also deploy the static files to any static hosting provider or integrate with a CI/CD pipeline of your choice.
+The site deploys to [Cloudflare Workers](https://developers.cloudflare.com/workers/static-assets/) on every push to `main`, via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The workflow builds with Hugo, generates the Pagefind search index, and uploads `public/` as static assets according to `wrangler.jsonc`.
+
+Two repository secrets are required:
+- `CLOUDFLARE_API_TOKEN` – a token with the **Edit Cloudflare Workers** permission.
+- `CLOUDFLARE_ACCOUNT_ID` – your Cloudflare account ID.
+
+To deploy manually from your machine:
+```bash
+hugo --gc --minify && pnpm dlx pagefind --site public && npx wrangler deploy
+```
+
+A `netlify.toml` is also kept for deploying to Netlify, and the static files in `public/` can be served by any static host.
 
 ## Contributing
 This is a personal project, but suggestions are welcome. Feel free to open an issue if you spot a bug or want to propose an enhancement.
